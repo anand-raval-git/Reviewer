@@ -1,0 +1,25 @@
+name: Environment Approvel
+
+on:
+  push:
+    origin:
+      - main
+
+jobs:
+  deploy-stagging:
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+      - name: Deploy to staging
+        run: echo "Deploying to staging"
+
+    
+  deploy-production:
+    runs-on: ubuntu-latest
+    environment: production 
+    needs: deploy-stagging
+
+    steps:
+      - name: Deploy to production
+        run: echo "Deploy to production"
